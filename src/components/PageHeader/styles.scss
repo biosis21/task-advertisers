@@ -1,0 +1,11 @@
+@import "src/variables";
+
+.page-header {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+  }
+}

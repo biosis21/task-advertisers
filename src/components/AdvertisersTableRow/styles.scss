@@ -1,0 +1,25 @@
+@import "src/variables";
+
+.advertisers-table-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid $border-color;
+  border-top: none;
+  cursor: pointer;
+
+  &__cell {
+    flex: 1;
+    &:nth-child(n+3) {
+      text-align: center;
+    }
+  }
+  
+  &:hover {
+    background-color: #2d2d2d;
+    border-left-color: #3e3e3e;
+    border-right-color: #3e3e3e;
+  }
+}

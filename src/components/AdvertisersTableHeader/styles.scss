@@ -1,0 +1,20 @@
+@import "src/variables";
+
+.advertisers-table-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid $border-color;
+
+  &__col {
+    flex: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    &:nth-child(n+3) {
+      text-align: center;
+    }
+  }
+}
