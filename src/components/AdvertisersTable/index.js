@@ -1,15 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
 
 import "./styles.scss";
+import {FETCH_STATUS} from "../../types";
 import {fetchAdvertisers} from "../../actions";
 import AdvertisersTableRow from "../AdvertisersTableRow";
-import {FETCH_STATUS} from "../../types/FetchStatus";
+import {AdvertisersTableSoringContext} from "../../contexts";
+import {useSortedAdvertisers, useSorting} from "../../hooks";
 import AdvertisersTableHeader from "../AdvertisersTableHeader";
 
-const AdvertisersTable = ({advertisers, status}) => {
+const AdvertisersTable = ({advertisers, status, advertiserStatistics, history}) => {
 
-    const buildList = () => advertisers.map((advertiser) => (
+    const {sorting, toggleSorting} = useSorting(history);
+    const sortedAdvertisers = useSortedAdvertisers(sorting, advertisers, advertiserStatistics);
+
+    const buildList = () => sortedAdvertisers.map((advertiser) => (
         <AdvertisersTableRow
             key={advertiser.id}
             advertiserId={advertiser.id}
@@ -18,11 +24,11 @@ const AdvertisersTable = ({advertisers, status}) => {
 
     const renderList = () => {
         if (status === FETCH_STATUS.LOADING) {
-            return (<div className="advertisers-table-body__status">Loading...</div>);
+            return (<div className="advertisers-table__status">Loading...</div>);
         }
 
         if (status === FETCH_STATUS.ERROR) {
-            return (<div className="advertisers-table-body__status">Could not load advertisers</div>);
+            return (<div className="advertisers-table__status">Could not load advertisers</div>);
         }
 
         return buildList();
@@ -30,7 +36,9 @@ const AdvertisersTable = ({advertisers, status}) => {
 
     return (
         <div className="advertisers-table">
-            <AdvertisersTableHeader />
+            <AdvertisersTableSoringContext.Provider value={[sorting, toggleSorting]}>
+                <AdvertisersTableHeader />
+            </AdvertisersTableSoringContext.Provider>
 
             {renderList()}
         </div>
@@ -40,8 +48,9 @@ const AdvertisersTable = ({advertisers, status}) => {
 const mapStateToProps = (state) => {
     return {
         advertisers: Object.values(state.advertisers.data),
+        advertiserStatistics: state.advertiserStatistics,
         status: state.advertisers.status
     };
 };
 
-export default connect(mapStateToProps, {fetchAdvertisers})(AdvertisersTable);
+export default withRouter(connect(mapStateToProps, {fetchAdvertisers})(AdvertisersTable));

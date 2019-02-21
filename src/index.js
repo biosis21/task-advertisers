@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import thunk from 'redux-thunk';
 import {Provider} from "react-redux";
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 import {applyMiddleware, compose, createStore} from "redux";
 
 import './variables.scss';
@@ -17,9 +17,9 @@ const store = createStore(reducers, /* preloadedState, */ composeEnhancers(apply
 
 ReactDOM.render(
     <Provider store={store}>
-        <HashRouter>
+        <BrowserRouter>
             <App />
-        </HashRouter>
+        </BrowserRouter>
     </Provider>
     ,
     document.getElementById("root")

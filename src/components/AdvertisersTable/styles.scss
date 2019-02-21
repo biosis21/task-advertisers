@@ -1,3 +1,9 @@
-.advertisers-table {
+@import "src/variables";
 
+.advertisers-table {
+  &__status {
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-top: none;
+  }
 }

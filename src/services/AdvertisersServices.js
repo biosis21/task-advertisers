@@ -1,5 +1,5 @@
+import {FETCH_STATUS} from "../types";
 import AdvertisersRepository from "../repositories/AdvertisersRepository";
-import {FETCH_STATUS} from "../types/FetchStatus";
 
 const getAdvertisers = async () => {
     try {
@@ -10,7 +10,7 @@ const getAdvertisers = async () => {
         };
     } catch (e) {
         return {
-            data: {},
+            data: null,
             status: FETCH_STATUS.ERROR
         };
     }
@@ -25,9 +25,9 @@ const getAdvertiserStatistics = async () => {
         };
     } catch (e) {
         return {
-            data: {},
+            data: null,
             status: FETCH_STATUS.ERROR
-        }
+        };
     }
 };
 
