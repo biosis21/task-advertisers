@@ -48,13 +48,11 @@ const AdvertisersTableRow = ({advertiser, advertiserStatistics, status}) => {
 
 const mapStateToProps = (state, props) => {
     const advertiserId = parseInt(props.advertiserId, 10);
-    const advertiser = state.advertisers.data[advertiserId];
     const {status, data} = state.advertiserStatistics;
-    const advertiserStatistics = Object.assign({}, data[advertiserId]);
 
     return {
-        advertiser,
-        advertiserStatistics,
+        advertiser: state.advertisers.data[advertiserId],
+        advertiserStatistics: data[advertiserId] || {},
         status
     };
 };

@@ -1,58 +1,25 @@
 import React, {useContext} from "react";
 
 import "./styles.scss";
+import {TABLE_COLUMNS} from "../../types/TableColumns";
 import {AdvertisersTableSoringContext} from "../../contexts";
+import AdvertisersTableSortDirection from "../AdvertisersTableSortDirection";
 
 const AdvertisersTableHeader = () => {
 
     const [sorting, toggleSorting] = useContext(AdvertisersTableSoringContext);
 
-    const columns = [
-        {
-            key: "name",
-            title: "Advertiser"
-        },
-        {
-            key: "creationAt",
-            title: "Creation date"
-        },
-        {
-            key: "campaignsIds",
-            title: "# Campaigns"
-        },
-        {
-            key: "impressions",
-            title: "Impressions"
-        },
-        {
-            key: "clicks",
-            title: "Clicks"
-        }
-    ];
-
-    const renderOrder = (columnKey) => {
-        if (columnKey !== sorting.key) {
-            return null;
-        }
-
-        return (
-            <i
-                className="advertisers-table-header__direction"
-                style={{"transform": `rotate(${sorting.direction === "desc" ? "180deg" : "0deg"})`}}
-            >
-                ^
-            </i>
-        );
-    };
-
-    const renderedColumns = columns.map((column) => (
+    const renderedColumns = TABLE_COLUMNS.map((column) => (
         <div
             key={column.key}
             className="advertisers-table-header__col"
             onClick={() => toggleSorting(column.key)}
         >
             {column.title}
-            {renderOrder(column.key)}
+            <AdvertisersTableSortDirection
+                show={column.key === sorting.key}
+                direction={sorting.direction}
+            />
         </div>
     ));
 

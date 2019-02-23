@@ -1,11 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import "./styles.scss";
 
 import PageHeader from "../components/PageHeader";
 import AdvertisersTable from "../components/AdvertisersTable";
+import {fetchAdvertisers} from "../actions";
+import {connect} from "react-redux";
 
-const AdvertisersPage = () => {
+const AdvertisersPage = ({fetchAdvertisers}) => {
+
+    useEffect(() => {
+        fetchAdvertisers();
+    }, []);
 
     return (
         <div className="container advertises-page">
@@ -17,4 +23,4 @@ const AdvertisersPage = () => {
 };
 
 
-export default AdvertisersPage;
+export default connect(null, {fetchAdvertisers})(AdvertisersPage);

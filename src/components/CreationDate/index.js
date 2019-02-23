@@ -1,8 +1,10 @@
-import React, {Fragment} from "react";
+import React from "react";
+
+const LOCALE = "nl";
 
 const CreationDate = ({date}) => {
 
-    const formatizedDateByLocal = new Date(date).toLocaleDateString("nl", {
+    const formatizedDateByLocale = new Date(date).toLocaleDateString(LOCALE, {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
@@ -10,11 +12,10 @@ const CreationDate = ({date}) => {
         minute: "2-digit"
     });
 
-
     return (
-        <Fragment>
-            {formatizedDateByLocal}
-        </Fragment>
+        <>
+            {formatizedDateByLocale}
+        </>
     );
 };
 

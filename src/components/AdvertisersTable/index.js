@@ -36,11 +36,13 @@ const AdvertisersTable = ({advertisers, status, advertiserStatistics, history}) 
 
     return (
         <div className="advertisers-table">
+
             <AdvertisersTableSoringContext.Provider value={[sorting, toggleSorting]}>
                 <AdvertisersTableHeader />
             </AdvertisersTableSoringContext.Provider>
 
             {renderList()}
+
         </div>
     );
 };
