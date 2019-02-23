@@ -3,6 +3,13 @@ import {useQueryParams} from "./UseQueryParams";
 import {SORTING_TYPE} from "../types";
 
 
+/**
+ * Custom hook for updating URL query params
+ * @param {object} history
+ * @param {string} key
+ * @param {SORTING_TYPE} direction
+ * @returns {{sorting, toggleSorting: toggleSorting}}
+ */
 export const useSorting = (history, key = "name", direction = SORTING_TYPE.DESC) => {
 
     const {getParam, setParam} = useQueryParams(history);
@@ -14,6 +21,10 @@ export const useSorting = (history, key = "name", direction = SORTING_TYPE.DESC)
 
     const [sorting, setSorting] = useState({key, direction});
 
+    /**
+     * Handler fires on change sorting properties
+     * @param {string} key
+     */
     const toggleSorting = (key) => {
         let {direction} = sorting;
 

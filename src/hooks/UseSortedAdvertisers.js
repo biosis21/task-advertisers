@@ -1,5 +1,12 @@
 import {SORTING_TYPE} from "../types";
 
+/**
+ * Function for comparing two values
+ * @param {*} a
+ * @param {*} b
+ * @param {number} direction - sorting directions
+ * @returns {number}
+ */
 const sortBy = (a, b, direction) => {
     if (a === undefined) {
         return direction;
@@ -20,11 +27,26 @@ const sortBy = (a, b, direction) => {
     return 0;
 };
 
+/**
+ * Function for comparing two strings
+ * @param {string} a
+ * @param {string} b
+ * @param {number} direction - sorting direction
+ * @returns {number}
+ */
 const sortByName = (a, b, direction) => {
     const res = ("" + a).localeCompare(b);
     return direction > 0 ? res : -res;
 };
 
+/**
+ * Factory for invoking specific function by related key
+ * @param {String} key - key for sorting
+ * @param {object} a
+ * @param {object} b
+ * @param {number} direction - sorting direction
+ * @returns {number}
+ */
 const sortingFactory = (key, a, b, direction) => {
     switch (key) {
         case "creationAt":
@@ -45,6 +67,13 @@ const sortingFactory = (key, a, b, direction) => {
     }
 };
 
+/**
+ * Custom hook for sorting advertisers by name, impressions, clicks and etc.
+ * @param {object} sorting - ex. {key: "name", direction: "asc"}
+ * @param {array} advertisers
+ * @param {object} advertiserStatistics
+ * @returns {array} - sorted advertisers by specific sorting properties
+ */
 export const useSortedAdvertisers = (sorting, advertisers, advertiserStatistics) => {
     const direction = sorting.direction === SORTING_TYPE.DESC ? 1 : -1;
 

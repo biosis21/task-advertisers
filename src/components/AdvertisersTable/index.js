@@ -35,7 +35,7 @@ const AdvertisersTable = ({advertisers, status, advertiserStatistics, history}) 
     };
 
     const disableTableClick = () => {
-        return status === FETCH_STATUS.SUCCESS ? null : {"pointer-events": "none"};
+        return status === FETCH_STATUS.SUCCESS ? null : {pointerEvents: "none"};
     };
 
     return (
