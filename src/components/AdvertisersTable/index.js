@@ -34,8 +34,15 @@ const AdvertisersTable = ({advertisers, status, advertiserStatistics, history}) 
         return buildList();
     };
 
+    const disableTableClick = () => {
+        return status === FETCH_STATUS.SUCCESS ? null : {"pointer-events": "none"};
+    };
+
     return (
-        <div className="advertisers-table">
+        <div
+            className="advertisers-table"
+            style={disableTableClick()}
+        >
 
             <AdvertisersTableSoringContext.Provider value={[sorting, toggleSorting]}>
                 <AdvertisersTableHeader />
